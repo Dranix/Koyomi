@@ -533,6 +533,20 @@ private extension Koyomi {
             cell.setContentFont(fontName: font.fontName, size: font.pointSize)
         }
         
+        let dateCount = abs(Calendar.current.dateComponents([.day], from: date, to: Date()).day!)
+        if dateCount > 365{
+            cell.textColor = UIColor.KoyomiColor.lightGray
+        } else {
+            let calendar = Calendar.current
+            let comparisonResult = calendar.compare(date, to: Date(), toGranularity: .day)
+            switch comparisonResult {
+            case ComparisonResult.orderedAscending:
+                cell.textColor = UIColor.KoyomiColor.lightGray
+            default:
+                break
+            }
+        }
+        
         cell.configureAppearanse(of: style, withColor: selectionColor, backgroundColor: backgroundColor, isSelected: isSelected)
     }
 }

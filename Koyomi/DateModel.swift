@@ -21,17 +21,17 @@ final class DateModel: NSObject {
     
     enum WeekType: String {
         case monday, tuesday, wednesday, thursday, friday, saturday, sunday
-
+        
         init?(_ indexPath: IndexPath) {
             let firstWeekday = Calendar.current.firstWeekday
             switch indexPath.row % 7 {
-            case (8 -  firstWeekday) % 7:  self = .sunday
-            case (9 -  firstWeekday) % 7:  self = .monday
-            case (10 - firstWeekday) % 7:  self = .tuesday
-            case (11 - firstWeekday) % 7:  self = .wednesday
-            case (12 - firstWeekday) % 7:  self = .thursday
-            case (13 - firstWeekday) % 7:  self = .friday
-            case (14 - firstWeekday) % 7:  self = .saturday
+            case (8 -  firstWeekday) % 7:  self = .monday
+            case (9 -  firstWeekday) % 7:  self = .tuesday
+            case (10 - firstWeekday) % 7:  self = .wednesday
+            case (11 - firstWeekday) % 7:  self = .thursday
+            case (12 - firstWeekday) % 7:  self = .friday
+            case (13 - firstWeekday) % 7:  self = .saturday
+            case (14 - firstWeekday) % 7:  self = .sunday
             default: return nil
             }
         }
@@ -307,7 +307,11 @@ final class DateModel: NSObject {
 // MARK: - Private Methods -
 
 private extension DateModel {
-    var calendar: Calendar { return Calendar.current }
+    var calendar: Calendar {
+        var kocalendar = Calendar.current
+        kocalendar.firstWeekday = 2
+        return kocalendar
+    }
     
     func setup() {
         selectedDates = [:]
