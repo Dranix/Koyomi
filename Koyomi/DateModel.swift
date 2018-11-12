@@ -307,7 +307,11 @@ final class DateModel: NSObject {
 // MARK: - Private Methods -
 
 private extension DateModel {
-    var calendar: Calendar { return Calendar.current}
+    var calendar: Calendar {
+        var kocalendar = Calendar.current
+        kocalendar.firstWeekday = 2
+        return kocalendar
+    }
     
     func setup() {
         selectedDates = [:]
